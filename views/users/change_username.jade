@@ -1,0 +1,32 @@
+extends ../layout
+
+block content
+  .container-fluid
+    .row
+      .col-md-3
+      .col-md-6
+          h2.text-center= title
+          br
+          form.form-horizontal(id='change_username' action='/users/change_username/#{user.UserID}' method='post')
+            .form-group
+              label.col-md-3.control-label Original Username
+              .col-md-9
+                input.form-control(type='text' placeholder= user.Username readonly)
+
+            .form-group
+              label.col-md-3.control-label(for='username') New Username
+              .col-md-9
+                input#username.form-control(type='text' name='Username' value= user.Username)
+                span#message
+
+            .form-group
+              .row
+                .col-md-offset-3.col-md-9           
+                  input.btn.btn-primary.btn-block(type='submit' value="Update")
+                  
+            .form-group
+              .row
+                .col-md-offset-3.col-md-9 
+                  a.btn.btn-primary.btn-block(href='/users/#{userid}') Cancel
+
+

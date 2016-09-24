@@ -1,0 +1,70 @@
+extends layout
+
+
+block content
+  .index_page
+    h2.text-center English Language Institute
+    br
+    .row
+      .col-md-4
+          //user panel
+          .panel.panel-default
+            .panel-heading.text-center User
+            .panel-body
+              if user
+                .text-center Welcome,&nbsp
+                  a(href='/users/#{user.UserID}') #{user.Username}
+                  | !
+                if user.isVerified == '0'
+                  .warning Your account is still in pending status. You cannot use the system until administrator verifies your account.
+              else
+                bold Please&nbsp
+                a.btn.btn-primary.btn-xs(href='/login') Login
+                bold  frist, and then you shall check your account.
+
+          //student panel
+          .panel.panel-default
+            .panel-heading.text-center Student
+            .panel-body
+              .list-group.text-center
+                a.list-group-item(href='/students/create') Add a new student
+                a.list-group-item(href='/students') Browse student list
+                a.list-group-item(href='/students/add_semester') Add a new semester to a student
+                  
+      .col-md-4
+        .panel.panel-default
+          .panel-heading.text-center Webforms
+          .panel-body
+              .list-group.text-center
+                if isInterviewer
+                  a.list-group-item.active(href='/webforms/interviews/') Interview
+                else 
+                  a.list-group-item(href='/webforms/') Pick a student from list.
+                  hr
+                  .text.text-center Grades
+                    .list-group
+                      a.list-group-item(href='/webforms/readings') Reading & Vocabulary
+                      a.list-group-item(href='/webforms/speakings') Speaking & Listening
+                      a.list-group-item(href='/webforms/writings') Writing & Grammar
+                      a.list-group-item(href='/webforms/toefl_preps') TOEFL Prep
+                      a.list-group-item(href='/webforms/extensive_listenings') Extensive Listening
+                  hr
+                  .list-group.text-center
+                    a.list-group-item(href='/webforms/interviews/') Interview
+                    a.list-group-item(href='/webforms/recommendations') Teacher Recommendation
+                    a.list-group-item(href='/webforms/toefls') TOEFL
+                    a.list-group-item(href='/webforms/timed_writings') Timed Writing
+      .col-md-4
+        .panel.panel-default
+          .panel-heading.text-center.strong Administrator
+          .panel-body
+            if user
+              .list-group.text-center
+                a(href='/users/userlist' class= user.User_group == 'admin' || 'super_user' ? "list-group-item" : "list-group-item disabled") Verify registered user
+                a(href='/verifications' class= user.User_group == 'admin' || 'super_user' ? "list-group-item" : "list-group-item disabled") Verify inputted data
+                a(href='/reports' class= user.User_group == 'admin' || 'super_user' ? "list-group-item" : "list-group-item disabled") Check report
+            else
+              .list-group.text-center
+                a.list-group-item(href='/users/userlist') Verify registered user
+                a.list-group-item(href='/verifications') Verify inputted data
+                a.list-group-item(href='/reports') Check report

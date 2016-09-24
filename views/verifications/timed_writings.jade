@@ -1,0 +1,65 @@
+extends ../layout
+
+block content
+  h2= title
+  .row
+    .col-md-4
+      .panel.panel-default
+        .panel-heading
+          h4 Student Information
+        .panel-body
+          table.table
+            tbody
+              tr
+                td First Name
+                td= result.First_name
+              tr
+                td Last Name
+                td= result.Last_name
+              tr
+                td Student ID
+                td= result.Student_number
+              tr
+                td Major
+                td= result.Major
+              tr
+                td Degree
+                td= result.Degree
+              tr
+                td School Year
+                td= result.Year
+              tr
+                td Semester
+                td= result.Season
+              tr
+                td Term
+                td= result.Term
+              tr
+                td Level
+                td= result.Level
+              tr
+                td Section
+                td= result.Section
+
+    .col-md-4
+      .panel.panel-primary
+        .panel-heading
+          h4 Verify #{title} :
+        .panel-body
+          form(action='/verifications/timed_writings/' + result.Timed_writing_id, method='post')
+            .form-group
+              label(for='Person_in_charge') Instructor Name
+              input#Person_in_charge.form-control(type='text' name='Person_in_charge' value= result.Person_in_charge)
+
+            hr
+
+            .form-group
+              label(for='Score') Timed Writing Raw Score (between 0.0 to 6.0)
+              input#Score.form-control(type='text' name='Score' value= result.Score)
+            
+            .form-group
+              .row
+                .col-md-6
+                  input.btn.btn-primary.btn-block(type='submit', value='Confirm')
+                .col-md-6
+                  a.btn.btn-primary.btn-block(href='/verifications/timed_writings/') Cancel

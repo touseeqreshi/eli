@@ -1,0 +1,80 @@
+extends ../../layout
+
+block content
+  .student
+    h2.text-center= title
+    .panel.panel-default
+      .panel-heading
+        h4 Student Information
+      .panel-body
+        table.table
+          thead
+            tr
+              th Student Number
+              th First Name
+              th Last Name
+              th Major
+              th Degree
+              th Year
+              th Semester
+              th Term
+              th Level
+              th Section
+            tbody
+              tr
+                td= student.Student_number
+                td= student.First_name
+                td= student.Last_name
+                td= student.Major
+                td= student.Degree
+                td= student.Year
+                td= student.Season
+                td= student.Term
+                td= student.Level
+                td= student.Section
+  .record
+    .panel.panel-default
+      .panel-heading
+        .row
+          .col-md-2
+            h4 Interview Record
+          .col-md-10
+              a.btn.btn-primary(href='/webforms/recommendations/create/#{student.Semester_id}') Create
+
+      .panel-body
+        .table
+          table.table
+            thead
+              tr
+                th Attendence
+                th Completion
+                th Participation
+                th Attitude
+                th Level
+                th Verified
+                th Instructor
+                th operation
+                th
+            tbody
+              if rows
+                each row in rows
+                  tr
+                    td= row.Attendence
+                    td= row.Completion
+                    td= row.Participation
+                    td= row.Attitude
+                    td= row.Recommendation_level
+                    if row.IsVerified == '1'
+                      td.yes Pass
+                    else
+                      td.no Pending
+                    td= row.Person_in_charge
+                    td
+                      a.btn.btn-primary.btn-xs(href='/webforms/recommendations/edit/#{row.Recommendation_id}') Edit
+                    td
+                      a.btn.btn-danger.btn-xs.confirmation(href='/webforms/recommendations/delete/#{row.Recommendation_id}') Delete
+              else
+                tr
+                  td No Record
+          .container-fluid
+            a.btn.btn-primary(href='/return') Back        

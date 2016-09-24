@@ -1,0 +1,74 @@
+extends ../../layout
+
+block content
+  .row
+    .col-md-12
+      .panel.panel-default
+        .panel-heading
+          h4= title
+        .panel-body
+          .container-fluid
+            ul.nav.nav-pills
+              li.dropdown.active
+                a.dropdown-toggle(data-toggle='dropdown' href='/' role='button' aria-haspopup='true' aria-expanded='false') All Classes
+                  span.caret
+                ul.dropdown-menu
+                  li
+                    a(href='/webforms/#{webformType}') All Students
+                  li.divider(role='separator')
+                  each semester in semesters
+                    li
+                      a(href='/webforms/#{webformType}/semester/#{semester.Semester_info_id}')= semester.Year + ' - ' + semester.Season + ' - ' + semester.Term + ' - ' + semester.Level + ' - ' + semester.Section
+          table.table.table-striped
+            thead
+              tr
+                th 
+                th Student Number
+                th First Name
+                th Last Name
+                th Major
+                th Year
+                th Semester
+                th Term
+                th Level
+                th Section
+                th Grade
+                th Verified
+                th                 
+            tbody
+              if rows
+                each row in rows
+                  tr
+                    if (row.Score)
+                      td
+                        a.btn.btn-primary.btn-xs(href='/webforms/#{webformType}/edit/#{row.ID}/') Edit
+                    else
+                      td
+                        a.btn.btn-primary.btn-xs(href='/webforms/#{webformType}/create/#{row.Semester_id}/') Create
+                    td= row.Student_number
+                    td= row.First_name
+                    td= row.Last_name
+                    td= row.Major
+                    td= row.Year
+                    td= row.Season
+                    td= row.Term
+                    td= row.Level
+                    td= row.Section
+                    td= row.Score
+                    if (row.IsVerified == '1')
+                      td.yes Pass
+                    else if (row.IsVerified == '0')
+                      td.no Pending
+                    else
+                      td
+                    if (row.Score)
+                      td
+                        a.btn.btn-danger.btn-xs.confirmation(href='/webforms/#{webformType}/delete/#{row.ID}/') Delete
+                    else
+                      td
+                        button.btn.btn-danger.btn-xs(type='button' disabled) Delete
+              else
+                tr
+                  td Empty
+
+          

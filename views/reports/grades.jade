@@ -1,0 +1,81 @@
+extends ../layout
+
+block content
+  .row
+    .col-md-2
+    .col-md-8
+      h3 Student Information
+      table.table
+        tr
+          th First Name
+          td= result.First_name
+        tr
+          th Last Name
+          td= result.Last_name
+        tr
+          th Student ID
+          td= result.Student_number
+        tr
+          th School Year
+          td= result.Year
+        tr
+          th Major
+          td= result.Major
+        tr
+          th Degree
+          td= result.Degree
+        tr
+          th Semester
+          td= result.Season
+        tr
+          th Term
+          td= result.Term
+        tr
+          th Level
+          td= result.Level
+        tr
+          th Section
+          td= result.Section
+
+  hr
+
+  h3= title
+  table.table
+    thead
+      tr
+        th Subject
+        if result.Readings
+          th Reading
+        if result.Speakings
+          th Speakings
+        if result.Writings
+          th Writing
+        if result.Toefl_preps
+          th TOEFL Prep
+        if result.Extensive_listenings
+          th Extensiv Lis
+        th Raw Grade
+        th Final Score
+    tbody
+      tr
+        td Grading
+        if result.Readings
+          td= result.Readings
+        if result.Speakings
+          td= result.Speakings
+        if result.Writings
+          td= result.Writings
+        if result.Toefl_preps
+          td= result.Toefl_preps
+        if result.Extensive_listenings
+          td= result.Extensive_listenings
+        td= Math.round(result.Raw_grade * 10)/10
+        td= result.Final_grade
+
+
+
+  hr
+  p.text-right Timothy Fojitk
+  p.text-right Director, English Language Insitute
+  p.text-right Concordia University Wisconsin
+  p.text-right= (new Date()).toLocaleDateString()

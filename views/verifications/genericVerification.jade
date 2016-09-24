@@ -1,0 +1,76 @@
+extends ../layout
+
+block content
+  h2= title
+  .row
+    .col-md-3
+      .list-group
+        li.list-group-item All Unverified Records
+          span.badge= all
+        a.list-group-item(href='/verifications/readings'  class= webformType == 'readings' ? 'active' : '') Reading & Vocabulary
+          if (result.Readings != 0)
+            span.badge= result.Readings
+        a.list-group-item(href='/verifications/speakings'  class= webformType == 'speakings' ? 'active' : '') Speaking & Listening
+          if (result.Speakings != 0)
+            span.badge= result.Speakings
+        a.list-group-item(href='/verifications/writings'  class= webformType == 'writings' ? 'active' : '') Writing & Gramar
+          if (result.Writings != 0)
+            span.badge= result.Writings
+        a.list-group-item(href='/verifications/toefl_preps'  class= webformType == 'toefl_preps' ? 'active' : '') TOEFL Preparation
+          if (result.Toefl_preps != 0)
+            span.badge= result.Toefl_preps
+        a.list-group-item(href='/verifications/extensive_listenings'  class= webformType == 'extensive_listenings' ? 'active' : '') Extensive Listening
+          if (result.Extensive_listenings != 0)
+            span.badge= result.Extensive_listenings
+        a.list-group-item(href='/verifications/interviews' class= webformType == 'interviews' ? 'active' : '') Interview
+          if (result.Interviews != 0)
+            span.badge= result.Interviews
+        a.list-group-item(href='/verifications/recommendations'  class= webformType == 'recommendations' ? 'active' : '') Teacher Recommendation
+          if (result.Recommendations != 0)
+            span.badge= result.Recommendations
+        a.list-group-item(href='/verifications/toefls'  class= webformType == 'toefls' ? 'active' : '') TOEFL
+          if (result.Toefls != 0)
+            span.badge= result.Toefls
+        a.list-group-item(href='/verifications/timed_writings'  class= webformType == 'timed_writings' ? 'active' : '') Timed Writing
+          if (result.Timed_writings != 0)
+            span.badge= result.Timed_writings
+
+    .col-md-9
+      .panel.panel-default
+        .panel-heading
+          h4= title
+        .panel-body
+          p Select a record
+          table.table.table-striped
+            thead
+              tr
+                th
+                th Student Number
+                th First Name
+                th Last Name
+                th Year
+                th Semester
+                th Term
+                th Level
+                th Section
+                th DELETE
+            tbody
+              if rows
+                each row in rows
+                  tr
+                    td
+                      a.btn.btn-primary.btn-xs(href='/verifications/#{webformType}/#{row.ID}') Click
+                    td= row.Student_number
+                    td= row.First_name
+                    td= row.Last_name
+                    td= row.Year
+                    td= row.Season
+                    td= row.Term
+                    td= row.Level
+                    td= row.Section
+                    td
+                      a.btn.btn-danger.btn-xs.comfirmation(href='/webforms/#{webformType}/delete/#{row.ID}') delete
+
+
+
+

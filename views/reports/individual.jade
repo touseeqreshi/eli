@@ -1,0 +1,93 @@
+extends ../layout
+
+block content
+  .report
+    h2 End-of-term Results for Concordia University Wisconsin English Language Institue
+
+    h3 Student Information
+    table.table
+      tr
+        th First Name
+        td= result.First_name
+      tr
+        th Last Name
+        td= result.Last_name
+      tr
+        th Student ID
+        td= result.Student_number
+      tr
+        th School Year
+        td= result.Year
+      tr
+        th Major
+        td= result.Major
+      tr
+        th Degree
+        td= result.Degree
+      tr
+        th Semester
+        td= result.Season
+      tr
+        th Term
+        td= result.Term
+      tr
+        th Level
+        td= result.Level
+      tr
+        th Section
+        td= result.Section
+
+    hr
+
+    .row
+      .col-md-6
+        h3 Institutional TOEFL Results
+        table.table
+           tr
+             th Subject
+             th Converted Score
+           tr
+             th Grammar
+             td= toefl.Grammar
+           tr
+             th Listening
+             td= toefl.Listening
+           tr
+             th Reading
+             td= toefl.Reading
+           tr
+             th Total Score
+             td= Math.round((toefl.Listening + toefl.Reading + toefl.Grammar)*10/3)
+      .col-md-6
+        h3 Concordia Unversity Wsiconsin ELI Exit Criteria
+        table.table
+          tr
+            th Item
+            th Converted Score (out of 20)
+          tr
+            th Teacher Recommendations
+            td= result.Teacher_recommendation
+          tr
+            th Grades
+            td= result.Grades
+          tr
+            th Timed Writing
+            td= result.Timed_writing
+          tr
+            th Interviews
+            td= result.Interview
+          tr
+            th TOEFL
+            td= result.Toefl
+          tr
+            th Total
+            td= result.Result
+
+    .explain
+      h4 Students who earn 70 or more points are eligible to exit the English Language institue.
+      h4 You have made good progress this term, and you will move on to the next level in the ELI.
+    .signiture
+      h4 Timothy Fojitk
+      h4 Director, English Language Institute
+      h4 Concordia University Wisconsin
+      h4= (new Date()).toLocaleDateString()

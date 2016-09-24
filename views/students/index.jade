@@ -1,0 +1,42 @@
+extends ../layout
+
+block content
+  .row
+    .col-md-12
+      p If you want to add a new student, please click 
+        a.btn.btn-default(href='/students/create') Create
+  .row
+    .col-md-12
+      .panel.panel-default
+        .panel-heading
+          h4 Student List
+        .panel-body
+          table.table.table-striped
+            thead
+              tr
+                th Student Number
+                th First Name
+                th Last Name
+                th Major
+                th Degree
+                th
+                th
+                th
+            tbody
+              if results
+                each item in results
+                  tr
+                    td= item.Student_number
+                    td= item.First_name
+                    td= item.Last_name
+                    td= item.Major
+                    td= item.Degree
+                    td
+                      a.btn.btn-default.btn-xs(href= '/students/edit/' + item.Student_id) edit
+                    td
+                      a.btn.btn-danger.btn-xs.confirmation(href= '/students/delete/' + item.Student_id) delete
+                    td
+                      a.btn.btn-primary.btn-xs.primary(href='/semesters/get/' + item.Student_id) add semester
+              else
+                tr
+                  td Empty

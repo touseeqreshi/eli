@@ -1,0 +1,31 @@
+extends layout
+
+block content
+  .container-fluid
+    .row
+      .col-md-3
+      .col-md-6
+          h2.text-center User Login
+          br
+          form.form-horizontal(action='/login' method='post')
+            .form-group
+              label.col-md-3.control-label(for='username') Username
+              .col-md-9
+                input#username.form-control(type='text' name='username' placeholder="Username")
+
+            .form-group
+              label.col-md-3.control-label(for='password') Password
+              .col-md-9
+                input#password.form-control(type='password' name='password' placeholder="Password")
+
+            .form-group
+              .col-md-offset-3.col-md-9            
+                input.btn.btn-primary.btn-block(type='submit' value="Submit")
+
+            div
+              p.text-center If you don't have an account, you may&nbsp
+                a.btn.btn-primary(href='/sign_up') Sign Up
+                | &nbspnow.
+              p.text-center If you forget your password, you can 
+                a.btn.btn-primary(href='/reset_password') RESET 
+                |  your password with your registered email account

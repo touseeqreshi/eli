@@ -1,0 +1,45 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+a {
+  color: #00B7FF;
+}
+.index_page {
+  padding: 10px 15px;
+}
+.warning {
+	color: red;
+	font-weight: bold;
+}
+footer {
+	font-family: : "Times New Roman", Times, serif;
+	font-style: : italic;
+}
+.alert {
+	margin-top: 20px;
+}
+td.yes {
+	color: green;
+	font-weight: bold;
+}
+td.no {
+	color: orange;
+	font-weight: bold;
+}
+.warning {
+	color: orange;
+}
+
+.report {	
+	font-family: "Times New Roman", Times, serif;
+}
+.explain {
+	font: 10px;
+	font-weight: bold;
+}
+.signiture {
+	font: 10px;
+	text-align: right;
+	font-style: italic;
+}

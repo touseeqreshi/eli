@@ -1,0 +1,72 @@
+extends ../layout
+
+block content
+  h1= title
+  .row
+    .col-md-4
+      .panel.panel-default
+        .panel-heading
+          h4 Student Information
+        .panel-body
+          table.table
+            tbody
+              tr
+                td First Name
+                td= result.First_name
+              tr
+                td Last Name
+                td= result.Last_name
+              tr
+                td Student ID
+                td= result.Student_number
+              tr
+                td School Year
+                td= result.Year
+              tr
+                td Semester
+                td= result.Season
+              tr
+                td Term
+                td= result.Term
+              tr
+                td Level
+                td= result.Level
+              tr
+                td Section
+                td= result.Section
+
+    .col-md-4
+      .panel.panel-default
+        .panel-heading
+          h4 Edit Grades for #{title}
+        .panel-body
+          form(action='/verifications/#{webformType}/' + result.ID, method='post')
+            .form-group
+              label(for 'Person_in_charge') Instructor Name
+              input#Person_in_charge.form-control(type='text' name='Person_in_charge' value = result.Person_in_charge)
+
+            hr
+
+            .form-group
+              label Please choose a grade
+              select.form-control(name='Score' multiple)
+                option(selected = result.Score=='4.0' value='4.0') 4.0&nbsp&nbspA+/A
+                option(selected = result.Score=='3.7' value='3.7') 3.7&nbsp&nbspA-
+                option(selected = result.Score=='3.3' value='3.3') 3.3&nbsp&nbspB+
+                option(selected = result.Score=='3.0' value='3.0') 3.0&nbsp&nbspB
+                option(selected = result.Score=='2.7' value='2.7') 2.7&nbsp&nbspB-
+                option(selected = result.Score=='2.3' value='2.3') 2.3&nbsp&nbspC+
+                option(selected = result.Score=='2.0' value='2.0') 2.0&nbsp&nbspC
+                option(selected = result.Score=='1.7' value='1.7') 1.7&nbsp&nbspC-
+                option(selected = result.Score=='1.3' value='1.3') 1.3&nbsp&nbspD+
+                option(selected = result.Score=='1.0' value='1.0') 1.0&nbsp&nbspD
+                option(selected = result.Score=='0.0' value='0.0') 0.0&nbsp&nbspE/F
+
+            .form-group
+              .row
+                .col-md-4
+                  input.btn.btn-primary.btn-block(type='submit' value='Confirm')
+                .col-md-4
+                  a.btn.btn-primary.btn-block(href='/verifications/#{webformType}/') Cancel
+                .col-md-4
+                  a.btn.btn-primary.btn-block(href='/webforms/#{webformType}/delete/#{result.ID}') Delete

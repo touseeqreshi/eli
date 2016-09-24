@@ -1,0 +1,60 @@
+extends ../layout
+
+block content
+  .row
+    .col-md-2
+    .col-md-8
+      h3 Student Information
+      table.table
+        tr
+          th First Name
+          td= result.First_name
+        tr
+          th Last Name
+          td= result.Last_name
+        tr
+          th Student ID
+          td= result.Student_number
+        tr
+          th School Year
+          td= result.Year
+        tr
+          th Major
+          td= result.Major
+        tr
+          th Degree
+          td= result.Degree
+        tr
+          th result
+          td= result.Season
+        tr
+          th Term
+          td= result.Term
+        tr
+          th Level
+          td= result.Level
+        tr
+          th Section
+          td= result.Section
+
+  hr
+
+  
+  .container-fluid
+    .row
+      .col-md-offset-1.col-md-10
+        h3 #{Title} Summary
+        table.table.table-striped
+          tr
+            th Raw Score
+            td= result.Score
+          tr
+            th Coverted Score
+            td= result.Timed_writing
+        hr
+
+  hr
+  p.text-right Timothy Fojitk
+  p.text-right Director, English Language Insitute
+  p.text-right Concordia University Wisconsin
+  p.text-right= (new Date()).toLocaleDateString()

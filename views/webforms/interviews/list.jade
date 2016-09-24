@@ -1,0 +1,86 @@
+extends ../../layout
+
+block content
+  .student
+    h2.text-center= title
+    .panel.panel-default
+      .panel-heading
+        h4 Student Information
+      .panel-body
+        table.table
+          thead
+            tr
+              th Student Number
+              th First Name
+              th Last Name
+              th Major
+              th Year
+              th Semester
+              th Term
+              th Level
+              th Section
+            tbody
+              tr
+                td= student.Student_number
+                td= student.First_name
+                td= student.Last_name
+                th= student.Major
+                td= student.Year
+                td= student.Season
+                td= student.Term
+                td= student.Level
+                td= student.Section
+  .record
+    .panel.panel-default
+      .panel-heading
+        .row
+          .col-md-2
+            h4 Interview Record
+          .col-md-10
+            if (!rows || rows.length <2)
+              a.btn.btn-primary(href='/webforms/interviews/create/#{student.Semester_id}') Create
+            else
+              a.btn.btn-default(href='' disabled='disabled') Create
+              b.warning &nbspCannot create more than Two Interview Records!
+
+      .panel-body
+        .table
+          table.table
+            thead
+              tr
+                th Pronunciation
+                th Fluency
+                th Vocabulary
+                th Circumlocution
+                th Comprehension
+                th Repetition
+                th Recommendation
+                th Verified
+                th Interviewer
+                th operation
+                th
+            tbody
+              if rows
+                each row in rows
+                  tr
+                    td= row.Pronunciation
+                    td= row.Fluency
+                    td= row.Vocabulary
+                    td= row.Circumlocution
+                    td= row.Comprehension
+                    td= row.Repetition
+                    td= row.Recommendation
+                    if row.IsVerified == '1'
+                      td.yes Pass
+                    else
+                      td.no Pending
+                    td= row.Person_in_charge
+                    td
+                      a.btn.btn-primary.btn-xs(href='/webforms/interviews/edit/#{row.Interview_id}') Edit
+                    td
+                      a.btn.btn-danger.btn-xs.confirmation(href='/webforms/interviews/delete/#{row.Interview_id}') Delete
+              else
+                tr
+                  td No Record
+          .container-fluid
+            a.btn.btn-primary(href='/return') Back

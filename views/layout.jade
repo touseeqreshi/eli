@@ -1,0 +1,135 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='utf-8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    // The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags
+    meta(name='description', content='')
+    meta(name='author', content='')
+    title= title
+    // Bootstrap core CSS
+    link(href='/dist/css/bootstrap.min.css', rel='stylesheet')
+    // IE10 viewport hack for Surface/desktop Windows 8 bug
+    link(href='/assets/css/ie10-viewport-bug-workaround.css', rel='stylesheet')
+    link(rel='stylesheet' href='/stylesheets/style.css')
+    // HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries
+    // if lt IE 9
+      script(src='https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js')
+      script(src='https://oss.maxcdn.com/respond/1.4.2/respond.min.js')
+  header
+    // navigation bar
+    nav.navbar.navbar-inverse.navbar-fixed-top
+      .container
+        .navbar-header
+          button.navbar-toggle.collapsed(type='button', data-toggle='collapse', data-target='#navbar', aria-expanded='false', aria-controls='navbar')
+            span.sr-only Toggle navigation
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
+          a.navbar-brand(href='/') ELI Center
+        #navbar.collapse.navbar-collapse
+          ul.nav.navbar-nav
+            li(class= url == '/' ? 'active': '')
+              a(href='/') Home
+            li(class= url == '/students' ? 'active': '')
+              a(href='/students') Student List
+            li.dropdown(class= url == '/webforms' ? 'active': '')
+              if isInterviewer
+                a(href='/webforms/interviews') Interview
+              else
+                a.dropdown-toggle(href='/webforms' data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false") Fill Forms
+                ul.dropdown-menu
+                  li
+                    a(href='/webforms') Student List
+                  li.divider(role="separator")
+                  li.dropdown-header Grades
+                  li
+                    a(href='/webforms/readings') Reading & Vocabulary
+                  li
+                    a(href='/webforms/speakings') Speaking & Listening
+                  li
+                    a(href='/webforms/writings') Writing & Grammar
+                  li
+                    a(href='/webforms/toefl_preps') TOEFL Prep
+                  li
+                    a(href='/webforms/extensive_listenings') Extensive Listening
+                  li.divider(role="separator")
+                  li
+                    a(href='/webforms/interviews/') Interview
+                  li
+                    a(href='/webforms/recommendations') Teacher Recommendation
+                  li
+                    a(href='/webforms/toefls') TOEFL
+                  li
+                    a(href='/webforms/timed_writings') Timed Writing
+            li(class= url == '/verifications' ? 'active': '')
+              a(href='/verifications') Verify
+            li(class= url == '/reports' ? 'active': '')
+              a(href='/reports') Report
+          // right most is used for user account functions
+          ul.nav.navbar-nav.navbar-right
+            //if user has logged in (by passing user instance from http response), show username and log out
+            if user
+              li
+                a(href='/users/#{user.UserID}')
+                  span.glyphicon.glyphicon-user
+                  |   #{user.Username}
+              li
+                a(href='/logout')
+                  span.glyphicon.glyphicon-log-out
+                  |   Log Out
+              // if cannot find user or user is null, show sign up and log in button
+            else
+              li
+                a(href='/sign_up')
+                  span.glyphicon.glyphicon-file
+                  |  Sign Up
+              li
+                a(href='/login')
+                  span.glyphicon.glyphicon-log-in
+                  |  Login
+        // /.nav-collapse
+
+  body
+    // message box
+    .message
+      .err
+        if error_message
+          .alert.alert-danger(role='alert')
+            span.glyphicon.glyphicon-exclamation-sign(aria-hidden='true')
+            span.sr-only Error:
+            |   !{error_message}
+      .success
+        if okay_message
+          .alert.alert-success(role='alert')
+            span.glyphicon.glyphicon-ok(aria-hidden='true')
+            span.sr-only Success:
+            |   !{okay_message}
+
+    .jumbotron
+      .container
+        block content
+
+    //
+      Bootstrap core JavaScript
+      ==================================================
+    // Placed at the end of the document so the pages load faster
+    script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js')
+    script.
+      window.jQuery || document.write('<script src="/assets/js/vendor/jquery.min.js"><\\/script>')
+      $('.confirmation').on('click', function () {
+          return confirm('Are you sure?');
+      });
+
+    script(src='/dist/js/bootstrap.min.js')
+
+    // IE10 viewport hack for Surface/desktop Windows 8 bug
+    script(src='/assets/js/ie10-viewport-bug-workaround.js')
+    script(src='/javascript/javascript.js')
+    block scripts
+  footer
+    hr
+
+    h3 CUW Mission
+    p Concordia University Wisconsin is a Lutheran higher education community committed to helping students develop in mind, body, and spirit for service to Christ in the Church and the World.

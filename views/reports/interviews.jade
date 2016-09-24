@@ -1,0 +1,165 @@
+extends ../layout
+
+block content
+  .row
+    .col-md-2
+    .col-md-8
+      h3 Student Information
+      table.table
+        tr
+          th First Name
+          td= semester.First_name
+        tr
+          th Last Name
+          td= semester.Last_name
+        tr
+          th Student ID
+          td= semester.Student_number
+        tr
+          th School Year
+          td= semester.Year
+        tr
+          th Major
+          td= semester.Major
+        tr
+          th Degree
+          td= semester.Degree
+        tr
+          th Semester
+          td= semester.Season
+        tr
+          th Term
+          td= semester.Term
+        tr
+          th Level
+          td= semester.Level
+        tr
+          th Section
+          td= semester.Section
+
+  hr
+
+  
+  .container-fluid
+    .row
+      .col-md-offset-1.col-md-10
+        h3 Summary
+        table.table.table-striped
+          tr
+            th Total Number
+            td= semester.Count
+          tr
+            th Total Score
+            td= semester.Score
+        hr
+        - var count = 0
+        h3= title
+        if results
+          each item in results
+            table.table.table-striped
+              - count++
+              tr
+                th No.
+                td= count
+              tr
+                th Interviewer
+                td= item.Person_in_charge
+              tr
+                th Speaking-pronunciation
+                  case item.Pronunciation
+                    when 0
+                      td 0 Constant pronunciation and stress errors that cause speech to be completely unintelligible.
+                    when 1 
+                      td 1 Frequent pronunciation and stress errors that cause speech to be occasionally unintelligible.
+                    when 2
+                      td 2 Consistent pronunciation and stress errors but speech is generally intelligible.
+                    when 3 
+                      td 3 Some pronunciation and stress errors but speech is consistently intelligible.
+                    default
+                      td 0 Constant pronunciation and stress errors that cause speech to be completely unintelligible.
+              tr
+                th Speaking-Fluency
+                case item.Fluency
+                  when 0
+                    td 0 Speech is so slow or fragmented that speech is completely unintelligible.
+                  when 1
+                    td 1 Speech is so slow or has so many pauses that speech is occasionally unintelligible.
+                  when 2
+                    td| 2 Speech has frequent pauses but is intelligible.
+                  when 3
+                    td  3 Speech has some pauses but is consistently intelligible.
+                  default
+                    td 0 Speech is so slow or fragmented that speech is completely unintelligible.
+              tr
+                th Speaking-Active Vocabulary
+                case item.Vocabulary
+                  when 0
+                    td 0 Extremely basic vocabulary; words are frequently incorrect; student is completely unintelligible.
+                  when 1
+                    td 1 Limited vocabulary; words are often incorrect; student is occasionally unintelligible.
+                  when 2
+                    td 2 Sufficient range of vocabulary; words are occasionally incorrect; student is intelligible.
+                  when 3
+                    td 3 Wide range of vocabulary; some word forms are incorrect; student is consistently intelligible.
+              tr
+                th Speaking-Circumlocution
+                case item.Circumlocution
+                  when 0
+                    td 0 Inability to repair breakdowns in conversation or restate words/concepts for clarity.
+                  when 1
+                    td 1 Limited ability to repair breakdowns in conversation or restate words/concepts for clarity.
+                  when 2
+                    td 2 Satisfactory ability to repair breakdowns in conversation and restate words/ concepts for clarity.
+                  when 3
+                    td 3 Consistent ability to repair breakdowns in conversation and restate words/ concepts for clarity.
+              tr
+                th Listening-Initial Comprehension
+                case item.Comprehension
+                  when 0
+                    td 0 Student understands 0%-50% of what is initially said.
+                  when 1
+                    td 1 Student understands 50% -70% of what is initially said.
+                  when 2
+                    td 2 Student understands 70% =-85% of what is initially said.
+                  when 3
+                    td 3 Student understands 85% -100% of what is initially said.
+                  default
+                    td 0 Student understands 0%-50% of what is initially said.
+              tr
+                th Listening-Need for Repetition
+                case item.Repetition
+                  when 0
+                    td 0 Student needs constant repetition.
+                  when 1
+                    td 1 Student needs significant repetition.
+                  when 2
+                    td 2 Student needs some repetition.
+                  when 3
+                    td 3 Student needs little or no repetition.
+                  default
+                    td 0 Student needs constant repetition.
+              tr
+                th Comments
+                td= item.Comments
+              tr
+                th Final Interview Recommendation
+                case item.Recommendation
+                  when 0
+                    td 0 is clearly not ready for academic study.
+                  when 1
+                    td 1 may be ready for academic study but will have significant difficulties with listening & speaking tasks.
+                  when 2
+                    td 2 is ready for academic study but will have some difficulties with listening and speaking tasks.
+                  when 3
+                    td 3 is clearly ready for academic study and will have only minor difficulties with listening and speaking tasks.
+                  default
+                    td 0 is clearly not ready for academic study.
+            hr
+        else
+          td empty
+
+  hr
+  p.text-right Timothy Fojitk
+  p.text-right Director, English Language Insitute
+  p.text-right Concordia University Wisconsin
+  p.text-right= (new Date()).toLocaleDateString()

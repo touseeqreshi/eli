@@ -1,0 +1,78 @@
+extends ../layout
+
+block content
+  h2= title
+  .row
+    .col-md-4
+      .panel.panel-default
+        .panel-heading
+          h4 Student Information
+        .panel-body
+          table.table
+            tbody
+              tr
+                td First Name
+                td= result.First_name
+              tr
+                td Last Name
+                td= result.Last_name
+              tr
+                td Student ID
+                td= result.Student_number
+              tr
+                td Major
+                td= result.Major
+              tr
+                td Degree
+                td= result.Degree
+              tr
+                td School Year
+                td= result.Year
+              tr
+                td Semester
+                td= result.Season
+              tr
+                td Term
+                td= result.Term
+              tr
+                td Level
+                td= result.Level
+              tr
+                td Section
+                td= result.Section
+
+    .col-md-4
+      .panel.panel-primary
+        .panel-heading
+          h4 Verify Score for #{title} :
+        .panel-body
+          form(action='/verifications/toefls/' + result.Toefl_id, method='post')
+            .form-group
+              label(for='Person_in_charge') Instructor Name
+              input#Person_in_charge.form-control(type='text' name='Person_in_charge' value= result.Person_in_charge)
+
+            hr
+
+            .form-group
+              label(for='Grammar') Grammar Raw Score
+              input#Grammar.form-control(type='number' name='Grammar' value=result.Grammar)
+
+            .form-group
+              label(for='Listening') Listening Raw Score
+              input#Listening.form-control(type='number' name='Listening' value= result.Listening)
+
+            .form-group
+              label(for='Reading') Reading Raw Score
+              input#Reading.form-control(type='number' name='Reading' value=result.Reading)
+
+            .form-group
+              label(for='Test_Date') Test Date
+              input#hidden_date(hidden value= result.Test_Date)
+              input#Test_Date.form-control(type='date' name = 'Test_Date')
+            
+            .form-group
+              .row
+                .col-md-6
+                  input.btn.btn-primary.btn-block(type='submit', value='Confirm')
+                .col-md-6
+                  a.btn.btn-primary.btn-block(href='/verifications/toefls/') Cancel

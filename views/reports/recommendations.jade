@@ -1,0 +1,108 @@
+extends ../layout
+
+block content
+  .row
+    .col-md-2
+    .col-md-8
+      h3 Student Information
+      table.table
+        tr
+          th First Name
+          td= result.First_name
+        tr
+          th Last Name
+          td= result.Last_name
+        tr
+          th Student ID
+          td= result.Student_number
+        tr
+          th School Year
+          td= result.Year
+        tr
+          th Major
+          td= result.Major
+        tr
+          th Degree
+          td= result.Degree
+        tr
+          th Semester
+          td= result.Season
+        tr
+          th Term
+          td= result.Term
+        tr
+          th Level
+          td= result.Level
+        tr
+          th Section
+          td= result.Section
+
+  hr
+
+  
+  .container-fluid
+    .row
+      .col-md-offset-1.col-md-10
+        h3 Summary
+        table.table.table-striped
+          tr
+            th Total Number
+            td= result.Count
+          tr
+            th Raw Score
+            td= Math.round(result.Raw_score * 10) /10
+          tr
+            th Coverted Score
+            td= result.Final_score
+        hr
+        - var count = 0
+        h3= title
+        if results
+          each item in results
+            table.table.table-striped
+              - count++
+              tr
+                th No.
+                td= count
+              tr
+                th Instructor
+                td= item.Person_in_charge
+              tr
+                th Attendence
+                td= item.Attendence
+              tr
+                th Completion Of Homework:
+                td= item.Completion
+              tr
+                th Quality Of Class Participation
+                td= item.Participation
+              tr
+                th Attitude Towards English Study
+                td= item.Attitude
+              tr
+                th Recommendation Of Subsequent Student
+                case item.Recommendation_level
+                  when 1
+                    td 1 Repeat Current ELI Level
+                  when 2
+                    td 2 Advance To Next ELI Level
+                  when 3
+                    td 3 Bridge Take both ELI and Academic Classes
+                  when 4
+                    td 4 Exit ELI (Some Teacher Concern) said.
+                  when 5
+                    td 5 Exit ELI (Few Or No Teacher Concern)
+                  default
+                    td 5 Exit ELI (Few Or No Teacher Concern)
+              tr
+                th Comments
+                td= item.Comments
+            hr
+        else
+          td empty
+
+  hr
+  p.text-right Timothy Fojitk
+  p.text-right Director, English Language Insitute
+  p.text-right Concordia University Wisconsin
+  p.text-right= (new Date()).toLocaleDateString()

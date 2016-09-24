@@ -1,0 +1,61 @@
+extends ../../layout
+
+block content
+  .row
+    .col-md-12
+      .panel.panel-default
+        .panel-heading
+          h4= title
+        .panel-body
+          .container-fluid
+            ul.nav.nav-pills
+              li.dropdown.active
+                a.dropdown-toggle(data-toggle='dropdown' href='/' role='button' aria-haspopup='true' aria-expanded='false')= thisSemester.Year + ' - ' + thisSemester.Season + ' - ' + thisSemester.Term + ' - ' + thisSemester.Level + ' - ' + thisSemester.Section       
+                  span.caret
+                ul.dropdown-menu
+                  li
+                    a(href='/webforms/#{webformType}') All Students
+                  li.divider(role='separator')
+                  each semester in semesters
+                    li
+                      a(href='/webforms/#{webformType}/semester/#{semester.Semester_info_id}')= semester.Year + ' - ' + semester.Season + ' - ' + semester.Term + ' - ' + semester.Level + ' - ' + semester.Section 
+          table.table.table-striped
+            thead
+              tr
+                th
+                th Student Number
+                th First Name
+                th Last Name
+                th Major
+                th Year
+                th Semester
+                th Term
+                th Level
+                th Section
+                th Recommendation Number
+                th Raw Score
+            tbody
+              if rows
+                each row in rows
+                  tr
+                    td
+                      a.btn.btn-primary.btn-xs(href='/webforms/#{webformType}/#{row.Semester_id}/') Click
+                    td= row.Student_number
+                    td= row.First_name
+                    td= row.Last_name
+                    td= row.Major
+                    td= row.Year
+                    td= row.Season
+                    td= row.Term
+                    td= row.Level
+                    td= row.Section
+                    if (row.Count>0)
+                      td.yes= row.Count
+                    else
+                      td.no= 0
+                    td= row.Raw_score || 0
+              else
+                tr
+                  td Empty
+
+          

@@ -1,0 +1,42 @@
+extends ../layout
+
+block content
+  .row
+    .col-md-1
+    .col-md-10
+      .panel.panel-primary
+        .panel-heading
+          h4 User List
+        .panel-body
+          .row
+            .col-md-6
+              a.btn.btn-primary.btn-block(href='/users/userlist') List All Users
+            .col-md-6
+              a.btn.btn-default.btn-block(href='/users/unverifiedUsers') Unverified Users&nbsp
+                span.badge= count
+          table.table.table-striped
+            thead
+              tr
+                th Username
+                th User Group
+                th Email
+                th Verification Status
+                th operations
+                th
+            tbody
+              if users
+                each user in users
+                  tr
+                    td= user.Username
+                    td= user.User_group
+                    td= user.email
+                    if user.isVerified == '1'
+                      td.yes Pass
+                    else
+                      td.no Pending
+                    td
+                      a.btn.btn-primary.btn-xs.confirmation(href='/users/changeStatus/#{user.UserID}/#{user.isVerified}') Change status
+                    td
+                      a.btn.btn-danger.btn-xs.confirmation(href='/users/delete/#{user.UserID}') DELETE
+              else
+                td No user found.

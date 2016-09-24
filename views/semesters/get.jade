@@ -1,0 +1,53 @@
+extends ../layout
+
+block content
+  .row
+    .col-md-4
+      .panel.panel-default
+        .panel-heading
+          h4 Student Information
+        .panel-body
+          table.table
+            tbody
+              tr
+                td Student Number
+                td= student.Student_number
+              tr
+                td First Name
+                td= student.First_name
+              tr
+                td Last name
+                td= student.Last_name
+              tr
+                td Major
+                td= student.Major
+              tr
+                td Degree
+                td= student.Degree
+
+    .col-md-8
+      .panel.panel-default
+        .panel-heading
+          h4 Semester List
+        .panel-body
+          a.btn.btn-primary(href='/semesters/create/' + student.Student_id) Create a new semester item
+          table.table.table-striped
+            thead
+              tr
+                th Year
+                th Semester
+                th Term
+                th Level
+                th Section
+            tbody
+              each row in results
+                tr
+                  td= row.Year
+                  td= row.Season
+                  td= row.Term
+                  td= row.Level
+                  td= row.Section
+                  td
+                    a.btn.btn-default.btn-xs(href='/semesters/edit/#{student.Student_id}/#{row.Semester_id}') edit
+                  td
+                    a.btn.btn-danger.btn-xs.confirmation(href='/semesters/delete/#{student.Student_id}/#{row.Semester_id}') delete

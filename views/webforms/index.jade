@@ -1,0 +1,44 @@
+extends ../layout
+
+block content
+  .row
+    .col-md-12
+      .panel.panel-default
+        .panel-heading
+          h4= title
+        .panel-body
+          table.table.table-striped
+            thead
+              tr
+                th
+                th Student Number
+                th First Name
+                th Last Name
+                th Major
+                th Degee
+                th Year
+                th Semester
+                th Term
+                th Level
+                th Section
+            tbody
+              if results
+                each item in results
+                  tr
+                    td
+                      a.btn.btn-primary.btn-xs(href='/webforms/#{webformType}/#{item.Semester_id}/') Click
+                    td= item.Student_number
+                    td= item.First_name
+                    td= item.Last_name
+                    td= item.Major
+                    td= item.Degree
+                    td= item.Year
+                    td= item.Season
+                    td= item.Term
+                    td= item.Level
+                    td= item.Section
+              else
+                tr
+                  td Empty
+
+          

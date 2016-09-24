@@ -1,0 +1,70 @@
+extends ../../layout
+
+block content
+  h2= title
+  .row
+    .col-md-4
+      .panel.panel-default
+        .panel-heading
+          h4 Student Information
+        .panel-body
+          table.table
+            tbody
+              tr
+                td First Name
+                td= result.First_name
+              tr
+                td Last Name
+                td= result.Last_name
+              tr
+                td Student ID
+                td= result.Student_number
+              tr
+                td School Year
+                td= result.Year
+              tr
+                td Semester
+                td= result.Season
+              tr
+                td Term
+                td= result.Term
+              tr
+                td Level
+                td= result.Level
+              tr
+                td Section
+                td= result.Section
+
+    .col-md-4
+      .panel.panel-primary
+        .panel-heading
+          h4 Grades for #{title}
+        .panel-body
+          form(action='/webforms/#{webformType}/create/' + result.Semester_id, method='post')
+            .form-group
+              label(for='Person_in_charge') Instructor Name
+              input#Person_in_charge.form-control(type='text' name='Person_in_charge')
+
+            hr
+
+            .form-group
+              label Please choose a grade
+              select.form-control(name='Score' multiple)
+                option(selected = 'selected' value='4.0') 4.0&nbsp&nbspA+/A
+                option(value='3.7') 3.7&nbsp&nbspA-
+                option(value='3.3') 3.3&nbsp&nbspB+
+                option(value='3.0') 3.0&nbsp&nbspB
+                option(value='2.7') 2.7&nbsp&nbspB-
+                option(value='2.3') 2.3&nbsp&nbspC+
+                option(value='2.0') 2.0&nbsp&nbspC
+                option(value='1.7') 1.7&nbsp&nbspC-
+                option(value='1.3') 1.3&nbsp&nbspD+
+                option(value='1.0') 1.0&nbsp&nbspD
+                option(value='0.0') 0.0&nbsp&nbspE/F
+
+            .form-group
+              .row
+                .col-md-6
+                  input.btn.btn-primary.btn-block(type='submit', value='Submit')
+                .col-md-6
+                  a.btn.btn-primary.btn-block(href='/return') Cancel

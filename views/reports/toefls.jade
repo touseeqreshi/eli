@@ -1,0 +1,93 @@
+extends ../layout
+
+block content
+  .row
+    .col-md-2
+    .col-md-8
+      h3 Student Information
+      table.table
+        tr
+          th First Name
+          td= result.First_name
+        tr
+          th Last Name
+          td= result.Last_name
+        tr
+          th Student ID
+          td= result.Student_number
+        tr
+          th School Year
+          td= result.Year
+        tr
+          th Major
+          td= result.Major
+        tr
+          th Degree
+          td= result.Degree
+        tr
+          th Semester
+          td= result.Season
+        tr
+          th Term
+          td= result.Term
+        tr
+          th Level
+          td= result.Level
+        tr
+          th Section
+          td= result.Section
+
+  hr
+
+  
+  .container-fluid
+    .row
+      .col-md-offset-1.col-md-10
+        h3 Summary
+        table.table.table-striped
+          tr
+            th Number of test
+            td= results.length
+          tr
+            th Highest Toefl Score
+            td= Math.round((results[0].Listening + results[0].Reading + results[0].Grammar) * 10 / 3)
+          tr
+            th Highest Coverted Score
+            td= result.Toefl
+          tr
+            th Highest Score Test Date
+            td= (new Date(results[0].Test_Date)).toLocaleDateString()
+        hr
+        - var count = 0
+        h3 #{title} Test Record (from high to low)
+        if results
+          each item in results
+            table.table
+              - count++
+              thead
+                tr
+                  th No.
+                  th Grammar
+                  th Listening
+                  th Reading
+                  th Total Score
+              tbody
+                tr
+                  td= count
+                  td= item.Grammar
+                  td= item.Listening
+                  td= item.Reading
+                  td= Math.round((item.Listening + item.Reading + item.Grammar) * 10 / 3)
+            table.table
+              tr
+                th Test Date
+                td= (new Date(item.Test_Date)).toLocaleDateString()
+            hr
+        else
+          td empty
+
+  hr
+  p.text-right Timothy Fojitk
+  p.text-right Director, English Language Insitute
+  p.text-right Concordia University Wisconsin
+  p.text-right= (new Date()).toLocaleDateString()

@@ -1,0 +1,64 @@
+extends ../layout
+
+block content
+  .row
+    .col-md-12
+      .panel.panel-primary
+        .panel-heading
+          h4= title
+        panel-body
+          hr
+          .container-fluid
+            ul.nav.nav-pills
+              li.dropdown.active
+                a.dropdown-toggle(data-toggle='dropdown' href='/' role='button' aria-haspopup='true' aria-expanded='false') All Classes
+                  span.caret
+                ul.dropdown-menu
+                  li
+                    a(href='/reports/') All Students
+                  li.divider(role='separator')
+                  each semester in semesters
+                    li
+                      a(href='/reports/semester/#{semester.Semester_info_id}')= semester.Year + ' - ' + semester.Season + ' - ' + semester.Term + ' - ' + semester.Level + ' - ' + semester.Section
+          table.table.table-striped
+            thead
+              tr
+                th Student ID
+                th First Name
+                th Last Name
+                th Year
+                th Semester
+                th Term
+                th Level
+                th Section
+                th Teacher Recommendation
+                th Timed Writing
+                th Grades
+                th Interview
+                th TOEFL
+                th Result
+                th Report
+            tbody
+              each row in rows
+                tr
+                  td= row.Student_number
+                  td= row.First_name
+                  td= row.Last_name
+                  td= row.Year
+                  td= row.Season
+                  td= row.Term
+                  td= row.Level
+                  td= row.Section
+                  td
+                    a(href='reports/recommendations/#{row.Semester_id}')= row.Teacher_recommendation
+                  td
+                    a(href='reports/timed_writings/#{row.Semester_id}')= row.Timed_writing
+                  td
+                    a(href='reports/grades/#{row.Semester_id}')= row.Grades
+                  td
+                    a(href='reports/interviews/#{row.Semester_id}')= row.Interview
+                  td
+                    a(href='reports/toefls/#{row.Semester_id}')= row.Toefl
+                  td= row.Result
+                  td
+                    a.btn.btn-primary.btn-xs(href='/reports/individual/' + row.Semester_id) Exit Report

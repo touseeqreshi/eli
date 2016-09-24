@@ -1,0 +1,37 @@
+extends ../layout
+
+block content
+  .row
+    .col-md-12
+      h4 Choose a student by add/edit a semester:
+  .row
+    .col-md-12
+      .panel.panel-default
+        .panel-heading
+          h4 Student List
+        .panel-body
+          table.table.table-striped
+            thead
+              tr
+                th Student Number
+                th First Name
+                th Last Name
+                th Major
+                th Degree
+                th
+                th
+                th
+            tbody
+              if results
+                each item in results
+                  tr
+                    td= item.Student_number
+                    td= item.First_name
+                    td= item.Last_name
+                    td= item.Major
+                    td= item.Degree
+                    td
+                      a.btn.btn-primary.btn-xs(href='/semesters/get/' + item.Student_id) semester
+              else
+                tr
+                  td Empty

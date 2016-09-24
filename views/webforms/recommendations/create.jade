@@ -1,0 +1,109 @@
+extends ../../layout
+
+block content
+  h2= title + ":"
+  .row
+    .col-md-4
+      .panel.panel-default
+        .panel-heading
+          h4 Student Information
+        .panel-body
+          table.table
+            tbody
+              tr
+                th First Name
+                td= result.First_name
+              tr
+                th Last Name
+                td= result.Last_name
+              tr
+                th Student ID
+                td= result.Student_number
+              tr
+                th Major
+                td= result.Major
+              tr
+                th Degree
+                td= result.Degree
+              tr
+                th School Year
+                td= result.Year
+              tr
+                th Semester
+                td= result.Season
+              tr
+                th Term
+                td= result.Term
+              tr
+                th Level
+                td= result.Level
+              tr
+                th Section
+                td= result.Section
+
+    .col-md-8
+      .panel.panel-primary
+        .panel-heading
+          h4 Interview Record
+        .panel-body
+          form#create_recommendation(action='/webforms/recommendations/create/' + result.Semester_id, method='post')
+            .form-group
+              label(for='Person_in_charge') Instructor Name
+              input#Person_in_charge.form-control(type='text' name='Person_in_charge')
+            hr
+            .form-group
+              h4 Effort in Program
+              .form-group
+                label(for='Attendence') Attendence:
+                .input-group
+                  input#Attendence.form-control(type='number' name='Attendence')
+                  .input-group-addon %
+              .form-group
+                label(for='Completion') Completion Of Homework:
+                .input-group
+                  input#Completion.form-control(type='number' name='Completion')
+                  .input-group-addon %
+              .form-group
+                label Quality Of Class Participation:
+                select.form-control(name='Participation')
+                    option(value='Strong') Stong
+                    option(value='Average') Average
+                    option(value='Weak') Weak
+                    option(value='Cannot Evaluate') Cannot Evaluate
+              .form-group
+                label Attitude Towards English Study:
+                select.form-control(name='Attitude')
+                  option(value='Strong') Stong
+                  option(value='Average') Average
+                  option(value='Weak') Weak
+                  option(value='Cannot Evaluate') Cannot Evaluate
+            hr
+            .form-group#required
+              label Recommendation Of Subsequent Student (REQUIRE):
+              input(type='radio' name = 'Recommendation_level' value = '0')
+              br
+              input(type='radio' name = 'Recommendation_level' value = '1' )
+              |  1 Repeat Current ELI Level
+              br
+              input(type='radio' name = 'Recommendation_level' value = '2' )
+              |  2 Advance To Next ELI Level
+              br
+              input(type='radio' name = 'Recommendation_level' value = '3' )
+              |  3 Bridge Take both ELI and Academic Classes
+              br
+              input(type='radio' name = 'Recommendation_level' value = '4' )
+              |  4 Exit ELI (Some Teacher Concern)
+              br
+              input(type='radio' name = 'Recommendation_level' value = '5' )
+              |  5 Exit ELI (Few Or No Teacher Concern)
+            hr
+            .form-group
+              label(for='Comments') Comments For Students File (To inform/assist academic program professor):
+              textarea.form-control#Comments(rows="3" name="Comments")
+            hr
+            .form-group
+              .row
+                .col-md-6
+                  input.btn.btn-primary.btn-block(type='submit', value='Submit')
+                .col-md-6
+                  a.btn.btn-primary.btn-block(href='/webforms/recommendations/#{result.Semester_id}') Cancel

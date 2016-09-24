@@ -1,0 +1,50 @@
+extends ../layout
+
+block content
+  .container-fluid
+    .row
+      .col-md-offset-3.col-md-6
+          h2.text-center= title
+          br
+          form.form-horizontal(action = '/students/create' method = 'post')
+            .form-group
+              label.col-md-4.control-label(for='Student_number') Student Number:
+              .input-group.col-md-8
+                span#basic-addon1.input-group-addon F
+                input#Student_number.form-control(type='text', name='Student_number', value='', placeholder="00000000", maxlength="8")
+              .row
+                .col-md-8.col-md-offset-4
+                  span#checkID.checkID
+
+            .form-group
+              label.col-md-4.control-label(for='First_name') First Name:
+              .input-group.col-md-8
+                input#First_name.form-control(type='text', name='First_name', value='', placeholder="Firstname")
+
+            .form-group
+              label.col-md-4.control-label(for='Last_name') Last Name:
+              .input-group.col-md-8
+                input#Last_name.form-control(type='text', name='Last_name', value='', placeholder="Lastname")
+
+            .form-group
+              label.col-md-4.control-label(for='Major') Major:
+              .input-group.col-md-8
+               select#Major.form-control(name='Major') Major:
+                 option(value='MS-IT') MS-IT
+                 option(value='MBA') MBA
+                 option(value='Nursing') Nursing
+                 option(value='Pharmacy') Pharmacy
+                 option(value-'ESL') ESL
+                 option(value='Computer Science') Computer Science
+                 option(value='other') other
+
+            .form-group
+              label.col-md-4.control-label(for='Degree') Degree:
+              .input-group.col-md-8
+                select#Degree.form-control(name='Degree')
+                  option(value='undergraduate') Undergraduate Student
+                  option(value='graduate') Graduate Student
+
+            .form-group
+              .input-group.col-md-offset-4.col-md-8
+                input.btn.btn-primary.btn-block(type='submit', value='Submit') 

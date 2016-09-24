@@ -1,0 +1,164 @@
+extends ../../layout
+
+block content
+  h2= title
+  .row
+    .col-md-4
+      .panel.panel-default
+        .panel-heading
+          h4 Student Information
+        .panel-body
+          table.table
+            tbody
+              tr
+                td First Name
+                td= result.First_name
+              tr
+                td Last Name
+                td= result.Last_name
+              tr
+                td Student ID
+                td= result.Student_number
+              tr
+                td School Year
+                td= result.Year
+              tr
+                td Semester
+                td= result.Season
+              tr
+                td Term
+                td= result.Term
+              tr
+                td Level
+                td= result.Level
+              tr
+                td Section
+                td= result.Section
+
+    .col-md-8
+      .panel.panel-default
+        .panel-heading
+          h4 Interview Record
+        .panel-body
+          form(action='/webforms/interviews/edit/' + result.Interview_id, method='post')
+            .form-group
+              label(for='Person_in_charge') Interviewer Name
+              input#Person_in_charge.form-control(type='text' name='Person_in_charge' value= result.Person_in_charge)
+            .form-group
+              label Speaking-Pronuonciation
+              br
+              input(type='radio', name='Pronunciation', value='0',  checked=result.Pronunciation=='0')
+              | 0 Constant pronunciation and stress errors that cause speech to be completely unintelligible.
+              br
+              input(type='radio', name='Pronunciation', value='1' checked=result.Pronunciation=='1')
+              | 1 Frequent pronunciation and stress errors that cause speech to be occasionally unintelligible.
+              br
+              input(type='radio', name='Pronunciation', value='2' checked=result.Pronunciation=='2')
+              | 2 Consistent pronunciation and stress errors but speech is generally intelligible.
+              br
+              input(type='radio', name='Pronunciation', value='3' checked=result.Pronunciation=='3')
+              | 3 Some pronunciation and stress errors but speech is consistently intelligible.
+            hr
+            .form-group
+              label Speaking-Fluency
+              br
+              input(type='radio', name='Fluency', value='0' checked=result.Fluency=='0')
+              | 0 Speech is so slow or fragmented that speech is completely unintelligible.
+              br
+              input(type='radio', name='Fluency', value='1' checked=result.Fluency=='1')
+              | 1 Speech is so slow or has so many pauses that speech is occasionally unintelligible.
+              br
+              input(type='radio', name='Fluency', value='2' checked=result.Fluency=='2')
+              | 2 Speech has frequent pauses but is intelligible.
+              br
+              input(type='radio', name='Fluency', value='3' checked=result.Fluency=='3')
+              | 3 Speech has some pauses but is consistently intelligible.
+            hr
+            .form-group
+              label Speaking-Active Vocabulary
+              br
+              input(type='radio', name='Vocabulary', value='0' checked=result.Vocabulary=='0')
+              | 0 Extremely basic vocabulary; words are frequently incorrect; student is completely unintelligible.
+              br
+              input(type='radio', name='Vocabulary', value='1' checked=result.Vocabulary=='1')
+              | 1 Limited vocabulary; words are often incorrect; student is occasionally unintelligible.
+              br
+              input(type='radio', name='Vocabulary', value='2' checked=result.Vocabulary=='2')
+              | 2 Sufficient range of vocabulary; words are occasionally incorrect; student is intelligible.
+              br
+              input(type='radio', name='Vocabulary', value='3' checked=result.Vocabulary=='3')
+              | 3 Wide range of vocabulary; some word forms are incorrect; student is consistently intelligible.
+            hr
+            .form-group
+              label Speaking-Circumlocution
+              br
+              input(type='radio', name='Circumlocution', value='0' checked=result.Circumlocution=='0')
+              | 0 Inability to repair breakdowns in conversation or restate words/concepts for clarity.
+              br
+              input(type='radio', name='Circumlocution', value='1' checked=result.Circumlocution=='1')
+              | 1 Limited ability to repair breakdowns in conversation or restate words/concepts for clarity.
+              br
+              input(type='radio', name='Circumlocution', value='2' checked=result.Circumlocution=='2')
+              | 2 Satisfactory ability to repair breakdowns in conversation and restate words/ concepts for clarity.
+              br
+              input(type='radio', name='Circumlocution', value='3' checked=result.Circumlocution=='3')
+              | 3 Consistent ability to repair breakdowns in conversation and restate words/ concepts for clarity.
+            hr
+            .form-group
+              label Listening-Initial Comprehension
+              br
+              input(type='radio', name='Comprehension', value='0' checked=result.Comprehension=='0')
+              | 0 Student understands 0%-50% of what is initially said.
+              br
+              input(type='radio', name='Comprehension', value='1' checked=result.Comprehension=='1')
+              | 1 Student understands 50% -70% of what is initially said.
+              br
+              input(type='radio', name='Comprehension', value='2' checked=result.Comprehension=='2')
+              | 2 Student understands 70% =-85% of what is initially said.
+              br
+              input(type='radio', name='Comprehension', value='3' checked=result.Comprehension=='3')
+              | 3 Student understands 85% -100% of what is initially said.
+            hr
+            .form-group
+              label Listening-Need for Repetition
+              br
+              input(type='radio', name='Repetition', value='0' checked=result.Repetition=='0')
+              | 0 Student needs constant repetition.
+              br
+              input(type='radio', name='Repetition', value='1' checked=result.Repetition=='1')
+              | 1 Student needs significant repetition.
+              br
+              input(type='radio', name='Repetition', value='2' checked=result.Repetition=='2')
+              | 2 Student needs some repetition.
+              br
+              input(type='radio', name='Repetition', value='3' checked=result.Repetition=='3')
+              | 3 Student needs little or no repetition.
+            hr
+            .form-group
+              label(for='Comments') Comments
+              br
+              bold If you would like to add any more information, please do so here.  Thanks a lot for your help!
+              textarea.form-control#Comments(rows="3" name='Comments')= result.Comments
+            hr
+            .form-group
+              label Final Interview Recommendation [REQUIRED].
+              br
+              input(type='radio', name='Recommendation', value='0' checked=result.Recommendation=='0')
+              | 0 is clearly not ready for academic study.
+              br
+              input(type='radio', name='Recommendation', value='1' checked=result.Recommendation=='1')
+              | 1 may be ready for academic study but will have significant difficulties with listening & speaking tasks.
+              br
+              input(type='radio', name='Recommendation', value='2' checked=result.Recommendation=='2')
+              | 2 is ready for academic study but will have some difficulties with listening and speaking tasks.
+              br
+              input(type='radio', name='Recommendation', value='3' checked=result.Recommendation=='3')
+              | 3 is clearly ready for academic study and will have only minor difficulties with listening and speaking tasks.
+            hr
+            .form-group
+              .row
+                .col-md-3
+                .col-md-3
+                  input.btn.btn-primary(type='submit', value='Update')
+                .col-md-6
+                  a.btn.btn-primary(href='/webforms/interviews/#{result.Semester_id}') Cancel
